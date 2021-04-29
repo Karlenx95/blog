@@ -12,17 +12,23 @@
             <th>Created</th>
 
         </tr>
-        <tr>
-            <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
+
+
+            {% for artical in articals %}
+                <tr>
+            <th>{{ artical.description }}</th>
             <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
             <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
             <th>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</th>
-        </tr>
+           <th> <a href="{{ path('artical_edit', {'id': artical.id}) }}">edit</a></th>
+
+                </tr>
+
+            {% endfor %}
 
         </table><br>
 
     <a href="{{ path('artical_index') }}">back to list</a>
 
-    <a href="{{ path('artical_edit', {'id': artical.id}) }}">edit</a>
 
 {% endblock %}
