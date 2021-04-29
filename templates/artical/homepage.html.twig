@@ -3,29 +3,23 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
-    <h1>Home Page</h1>
-
-    <table class="table">
-        <tbody>
+        <table>
+            <caption class="caption" >Home Page</caption><br>
         <tr>
             <th>Name</th>
-            <td>{{ artical.name }}</td>
+            <th>Description</th>
+            <th>IsEnabled</th>
+            <th>Created</th>
+
+        </tr>
+        <tr>
+            <th>{{ artical.description }}</th>
+            <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
+            <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
+            <th>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</th>
         </tr>
 
-        <tr>
-            <th>Description</th>
-            <td>{{ artical.description }}</td>
-        </tr>
-        <tr>
-            <th>IsEnabled</th>
-            <td>{{ artical.isEnabled ? 'Yes' : 'No' }}</td>
-        </tr>
-        <tr>
-            <th>Created</th>
-            <td>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        </tbody>
-    </table>
+        </table><br>
 
     <a href="{{ path('artical_index') }}">back to list</a>
 

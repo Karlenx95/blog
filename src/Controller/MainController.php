@@ -21,8 +21,8 @@ class MainController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $article = $em->getRepository(Artical::class)->findOneBy(['id' => 6]);
+        $find = $this->getDoctrine()->getManager();
+        $article = $find->getRepository(Artical::class)->findOneBy(['id' => 6]);
 
         return $this->render('main/index.html.twig', ['artical'=>$article]) ;
 
