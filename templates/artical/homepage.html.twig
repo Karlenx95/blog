@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+    <h1>Home Page</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Name</th>
+            <td>{{ artical.name }}</td>
+        </tr>
+
+        <tr>
+            <th>Description</th>
+            <td>{{ artical.description }}</td>
+        </tr>
+        <tr>
+            <th>IsEnabled</th>
+            <td>{{ artical.isEnabled ? 'Yes' : 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Created</th>
+            <td>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('artical_index') }}">back to list</a>
+
+    <a href="{{ path('artical_edit', {'id': artical.id}) }}">edit</a>
+
+{% endblock %}
