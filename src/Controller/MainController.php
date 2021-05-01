@@ -24,7 +24,7 @@ class MainController extends AbstractController
         $find = $this->getDoctrine()->getManager();
         $articals = $find->getRepository(Artical::class)->findAll();
 
-        return $this->render('artical/show.html.twig', ['articals'=>$articals]) ;
+        return $this->render('main/index.html.twig', ['articals'=>$articals]) ;
 
     }
 

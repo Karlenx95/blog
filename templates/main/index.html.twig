@@ -1,9 +1,48 @@
 {% extends 'base.html.twig' %}
 
 
-
  {% block footer %}
 
-    {{ }}
+     <div >
+         {% for artical in articals %}
+             {% if artical.isEnabled == true %}
+
+             <th>{{ artical.name }}</th>
+
+             <th>
+                     <span class="Enable Articals">is enable artical ?</span>
+                     <p>Yes</p>
+             </th>
+
+             {% endif %}
+
+
+
+         {% endfor %}
+     </div>
+
 
  {% endblock %}
+
+{% block content %}
+    <div>
+        {% for artical in articals %}
+            {% if artical.isEnabled == false %}
+
+                <th>{{ artical.name }}</th>
+
+                <th>
+                    <span class="No Enable Articals">is enable artical ?</span>
+                    <p>No</p>
+                </th>
+                <th> <a href="{{ path('artical_edit', {'id': artical.id}) }}">edit</a></th>
+
+            {% endif %}
+
+
+
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
