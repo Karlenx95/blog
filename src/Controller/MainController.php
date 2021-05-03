@@ -5,16 +5,15 @@ namespace App\Controller;
 
 
 use App\Entity\Artical;
-use App\Repository\ArticalRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class MainController extends AbstractController
 {
-
     /**
      * @Route("/", name="homepage", methods={"GET"})
      * @Template()
@@ -24,8 +23,22 @@ class MainController extends AbstractController
         $find = $this->getDoctrine()->getManager();
         $articals = $find->getRepository(Artical::class)->findAll();
 
-        return $this->render('main/index.html.twig', ['articals'=>$articals]) ;
+        return $this->render('artical/show.html.twig',['articals'=>$articals]);
 
     }
+
+    /**
+     * @Route ("/enable", name="enable",methods={"GET"})
+     */
+
+    public function  showIsEnableArtical()
+    {
+        $find = $this->getDoctrine()->getManager();
+        $enable =$find ->getRepository(Artical::class)->findAll();
+
+        return $this->render('main/index.html.twig',['articals'=>$enable]);
+
+    }
+
 
 }
