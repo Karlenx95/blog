@@ -31,7 +31,7 @@ class MainController extends AbstractController
      * @Route ("/enable", name="enable",methods={"GET"})
      */
 
-    public function  showIsEnableArtical()
+    public function  showIsEnableArtical(Request $request)
     {
         $find = $this->getDoctrine()->getManager();
         $enable =$find ->getRepository(Artical::class)->findAll();
