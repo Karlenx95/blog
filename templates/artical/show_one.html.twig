@@ -1,0 +1,25 @@
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>IsEnabled</th>
+            <th>Created</th>
+            <th>Artical Type</th>
+
+        </tr>
+
+        <tr>
+            <th>{{ artical.description }}</th>
+            <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
+            <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
+            <th>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</th>
+            <th>{{ artical.articalType }}</th>
+           
+        </tr>
+    </table>
+
+    <a href="{{ path('artical_index') }}">back to list</a>
+
+{% endblock %}

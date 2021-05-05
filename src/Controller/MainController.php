@@ -23,7 +23,7 @@ class MainController extends AbstractController
         $find = $this->getDoctrine()->getManager();
         $articals = $find->getRepository(Artical::class)->findAll();
 
-        return $this->render('artical/show.html.twig',['articals'=>$articals]);
+        return $this->render('main/artical_types.html.twig',['articals'=>$articals]);
 
     }
 
@@ -39,6 +39,59 @@ class MainController extends AbstractController
         return $this->render('main/index.html.twig',['articals'=>$enable]);
 
     }
+
+    /**
+     * @Route ("/politics",name="politics",methods={"GET"})
+     * @return Response
+     */
+
+    public function typePolitics(Request $request)
+    {
+        $find = $this->getDoctrine()->getManager();
+        $types = $find ->getRepository(Artical::class)->findAll();
+
+        return $this->render('main/politics.html.twig',['articals' => $types]);
+    }
+
+    /**
+     * @Route ("/coronavirus",name="coronavirus",methods={"GET"})
+     * @return Response
+     */
+
+    public function typeCoronavirus(Request $request)
+    {
+        $find = $this->getDoctrine()->getManager();
+        $types = $find ->getRepository(Artical::class)->findAll();
+
+        return $this->render('main/coronavirus.html.twig',['articals' => $types]);
+    }
+
+    /**
+     * @Route ("/tech",name="tech",methods={"GET"})
+     * @return Response
+     */
+
+    public function typeTech(Request $request)
+    {
+        $find = $this->getDoctrine()->getManager();
+        $types = $find ->getRepository(Artical::class)->findAll();
+
+        return $this->render('main/tech.html.twig',['articals' => $types]);
+    }
+    /**
+     * @Route ("/world",name="world",methods={"GET"})
+     * @return Response
+     */
+
+    public function typeWorld(Request $request)
+    {
+        $find = $this->getDoctrine()->getManager();
+        $types = $find ->getRepository(Artical::class)->findAll();
+
+        return $this->render('main/world.html.twig',['articals' => $types]);
+    }
+
+
 
 
 }

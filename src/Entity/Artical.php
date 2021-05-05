@@ -37,6 +37,11 @@ class Artical
      */
     private $created;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $articalType;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Artical
     public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
+
+        return $this;
+    }
+
+    public function getArticalType(): ?string
+    {
+        return $this->articalType;
+    }
+
+    public function setArticalType(?string $articalType): self
+    {
+        $this->articalType = $articalType;
 
         return $this;
     }

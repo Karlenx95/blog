@@ -53,7 +53,7 @@ class ArticalController extends AbstractController
      */
     public function show(Artical $artical): Response
     {
-        return $this->render('artical/show.html.twig', [
+        return $this->render('artical/show_one.html.twig', [
             'artical' => $artical,
         ]);
     }

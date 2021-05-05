@@ -13,6 +13,7 @@
                 <th>Description</th>
                 <th>IsEnabled</th>
                 <th>Created</th>
+                <th>Artical Type</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{ artical.description }}</td>
                 <td>{{ artical.isEnabled ? 'Yes' : 'No' }}</td>
                 <td>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ artical.articalType }}</td>
                 <td>
                     <a href="{{ path('artical_show', {'id': artical.id}) }}">show</a>
                     <a href="{{ path('artical_edit', {'id': artical.id}) }}">edit</a>
