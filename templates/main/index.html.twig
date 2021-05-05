@@ -1,38 +1,26 @@
 {% extends 'base.html.twig' %}
 
-
- {% block footer %}
-
-     <div >
-         {% for artical in articals %}
-             {% if artical.isEnabled == true %}
-
-             <th>{{ artical.name }}</th>
-
-             <th>
-                     <span class="Enable Articals">is enable artical ?</span>
-                     <p>Yes</p>
-             </th>
-
-             {% endif %}
-
-
-
-         {% endfor %}
-     </div>
-
-
- {% endblock %}
-
 {% block content %}
-    <div>
-        {% for artical in articals %}
-            {% if artical.isEnabled == false %}
 
+    
+    <div >
+
+        {% for key, artical in articals %}
+            {% if artical.isEnabled == true %}
+                <th>{{ key }}</th><br>
                 <th>{{ artical.name }}</th>
 
                 <th>
-                    <span class="No Enable Articals">is enable artical ?</span>
+                    <span class="enable-articals">is enable artical ?</span>
+                    <p>Yes</p>
+                </th>
+
+            {% else %}
+                <th>{{ key }}</th><br>
+                <th>{{ artical.name }}</th>
+
+                <th>
+                    <span class="no-enable-articals">is enable artical ?</span>
                     <p>No</p>
                 </th>
                 <th> <a href="{{ path('artical_edit', {'id': artical.id}) }}">edit</a></th><br>
@@ -47,3 +35,14 @@
 
 
 {% endblock %}
+
+
+ {% block footer %}
+     {#<a>     <img src="{{ asset('image/Screenshot from 2021-05-03 18-18-43.png')}}" alt="Symfony!">  </a>#}
+
+
+
+
+
+ {% endblock %}
+

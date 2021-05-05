@@ -34,7 +34,7 @@ class MainController extends AbstractController
     public function  showIsEnableArtical(Request $request)
     {
         $find = $this->getDoctrine()->getManager();
-        $enable =$find ->getRepository(Artical::class)->findAll();
+        $enable = $find ->getRepository(Artical::class)->findAll();
 
         return $this->render('main/index.html.twig',['articals'=>$enable]);
 
