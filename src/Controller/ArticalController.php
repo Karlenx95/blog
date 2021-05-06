@@ -25,35 +25,35 @@ class ArticalController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="artical_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $artical = new Artical();
-        $form = $this->createForm(ArticalType::class, $artical);
-        $form->handleRequest($request);
+        /**
+         * @Route("/new", name="artical_new", methods={"GET","POST"})
+         */
+        public function new(Request $request): Response
+        {
+            $artical = new Artical();
+            $form = $this->createForm(ArticalType::class, $artical);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($artical);
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($artical);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('artical_index');
+                return $this->redirectToRoute('artical_index');
+            }
+
+            return $this->render('artical/new.html.twig', [
+                'artical' => $artical,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('artical/new.html.twig', [
-            'artical' => $artical,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="artical_show", methods={"GET"})
      */
     public function show(Artical $artical): Response
     {
-        return $this->render('artical/show_one.html.twig', [
+        return $this->render('artical/show_one.html.twig        ', [
             'artical' => $artical,
         ]);
     }

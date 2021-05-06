@@ -36,15 +36,12 @@ class ArticalRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Artical
-    {
+    public function findArticleWithCategory($categoryName){
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+            ->innerJoin('a.category','aC')
+            ->where('aC.name = :name')
+            ->setParameter('name',$categoryName)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+            ->getResult();
+        }
 }

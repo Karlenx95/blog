@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Artical;
+use App\Entity\Category;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,13 +20,8 @@ class ArticalType extends AbstractType
             ->add('description')
             ->add('isEnabled')
             ->add('created')
-            ->add('articalType', ChoiceType::class,[
-                'choices'=>[
-                    'Politics' => 'politics',
-                    'Coronavirus' => 'coronavirus',
-                    'Tech' => 'tech',
-                    'World' => 'world'
-                ]
+            ->add('category',EntityType::class,[
+                'class'=>Category::class,
             ]);
     }
 

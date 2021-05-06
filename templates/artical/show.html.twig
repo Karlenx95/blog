@@ -10,7 +10,7 @@
         <th>Description</th>
         <th>IsEnabled</th>
         <th>Created</th>
-        <th>Artical Type</th>
+        <th>Category</th>
 
     </tr>
 
@@ -21,7 +21,7 @@
             <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
             <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
             <th>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</th>
-            <th>{{ artical.articalType }}</th>
+            <th>{{ artical.category }}</th>
             <th> <a href="{{ path('artical_edit', {'id': artical.id}) }}">edit</a></th>
             <th>{{ include('artical/_delete_form.html.twig') }}</th>
 

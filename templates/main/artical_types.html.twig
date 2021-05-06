@@ -1,15 +1,16 @@
 
 <ul>
     <li>
-        <a href="{{ path('politics') }}">Politics</a>
+        <a href="{{ path('category',{'categoryName': 'politics'}) }}">Politics</a>
     </li>
     <li>
-        <a href="{{ path('coronavirus') }}">Coronavirus</a>
+        <a href="{{ path('category',{'categoryName': 'coronavirus'}) }}">Coronavirus</a>
     </li>
     <li>
-        <a href="{{ path('tech') }}">Tech</a>
+        <a href="{{ path('category',{'categoryName': 'tech'}) }}">Tech</a>
     </li>
     <li>
-        <a href="{{ path('world') }}">World</a>
+        <a href="{{ path('category',{'categoryName': 'world'}) }}">World</a>
     </li>
 </ul>
+<a href="{{ path('artical_index') }}">back to list</a>

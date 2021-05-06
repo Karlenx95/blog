@@ -42,6 +42,11 @@ class Artical
      */
     private $articalType;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articals",cascade={"persist","remove"})
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,14 +100,14 @@ class Artical
         return $this;
     }
 
-    public function getArticalType(): ?string
+    public function getCategory(): ?Category
     {
-        return $this->articalType;
+        return $this->category;
     }
 
-    public function setArticalType(?string $articalType): self
+    public function setCategory(?Category $category): self
     {
-        $this->articalType = $articalType;
+        $this->category = $category;
 
         return $this;
     }

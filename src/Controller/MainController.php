@@ -5,6 +5,8 @@ namespace App\Controller;
 
 
 use App\Entity\Artical;
+use App\Entity\Category;
+use ContainerBiv4eCt\getArticalTypeService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,57 +43,18 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route ("/politics",name="politics",methods={"GET"})
+     * @Route ("/artical-category/{categoryName}", name="category",methods={"GET"})
      * @return Response
      */
 
-    public function typePolitics(Request $request)
+    public function showArticalCategory($categoryName)
     {
-        $find = $this->getDoctrine()->getManager();
-        $types = $find ->getRepository(Artical::class)->findAll();
+    $em = $this->getDoctrine()->getManager();
+    $show = $em->getRepository(Artical::class)->findArticleWithCategory($categoryName);
 
-        return $this->render('main/politics.html.twig',['articals' => $types]);
+    return $this->render('artical/show.html.twig', ['articals'=>$show]);
+
     }
-
-    /**
-     * @Route ("/coronavirus",name="coronavirus",methods={"GET"})
-     * @return Response
-     */
-
-    public function typeCoronavirus(Request $request)
-    {
-        $find = $this->getDoctrine()->getManager();
-        $types = $find ->getRepository(Artical::class)->findAll();
-
-        return $this->render('main/coronavirus.html.twig',['articals' => $types]);
-    }
-
-    /**
-     * @Route ("/tech",name="tech",methods={"GET"})
-     * @return Response
-     */
-
-    public function typeTech(Request $request)
-    {
-        $find = $this->getDoctrine()->getManager();
-        $types = $find ->getRepository(Artical::class)->findAll();
-
-        return $this->render('main/tech.html.twig',['articals' => $types]);
-    }
-    /**
-     * @Route ("/world",name="world",methods={"GET"})
-     * @return Response
-     */
-
-    public function typeWorld(Request $request)
-    {
-        $find = $this->getDoctrine()->getManager();
-        $types = $find ->getRepository(Artical::class)->findAll();
-
-        return $this->render('main/world.html.twig',['articals' => $types]);
-    }
-
-
 
 
 }
