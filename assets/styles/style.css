@@ -1,7 +1,13 @@
-h1
-{
-color: #5eb5e0;
+h1 {
+    color: blue;
+    font-family: verdana, serif;
+    font-size: 300%;
 }
-body{
+body {
     background-color: darkgray;
 }
+a {
+    border: 2px solid powderblue;
+    margin: 50px;
+}
+
