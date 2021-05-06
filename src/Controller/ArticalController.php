@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Artical;
+use App\Entity\Category;
 use App\Form\ArticalType;
+use App\Form\CategoryType;
 use App\Repository\ArticalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,7 +55,7 @@ class ArticalController extends AbstractController
      */
     public function show(Artical $artical): Response
     {
-        return $this->render('artical/show_one.html.twig        ', [
+        return $this->render('artical/show_one.html.twig', [
             'artical' => $artical,
         ]);
     }
@@ -90,5 +92,27 @@ class ArticalController extends AbstractController
         }
 
         return $this->redirectToRoute('artical_index');
+    }
+    /**
+     * @Route("/new-category/{$category}", name="new-category", methods={"GET","POST"})
+     */
+    public function newCategory(Request $request): Response
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('artical/newCategory.html.twig', [
+            'category' => $category,
+            'form' => $form->createView(),
+        ]);
     }
 }

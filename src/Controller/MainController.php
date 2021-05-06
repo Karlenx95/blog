@@ -5,7 +5,6 @@ namespace App\Controller;
 
 
 use App\Entity\Artical;
-use App\Entity\Category;
 use ContainerBiv4eCt\getArticalTypeService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

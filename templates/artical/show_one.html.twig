@@ -1,3 +1,4 @@
+{% extends 'base.html.twig' %}
 
 {% block content %}
     <table>
@@ -11,12 +12,11 @@
         </tr>
 
         <tr>
-            <th>{{ articals.description }}</th>
-            <th>{{ articals.isEnabled ? 'Yes' : 'No' }}</th>
-            <th>{{ articals.isEnabled ? 'Yes' : 'No' }}</th>
-            <th>{{ articals.created ? artical.created|date('Y-m-d H:i:s') : '' }}</th>
-            <th>{{ articals.category }}</th>
-
+            <th>{{ artical.description }}</th>
+            <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
+            <th>{{ artical.isEnabled ? 'Yes' : 'No' }}</th>
+            <th>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</th>
+            <th>{{ artical.category }}</th>
         </tr>
     </table>
 
