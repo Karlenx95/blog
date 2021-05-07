@@ -1,13 +1,28 @@
 h1 {
-    color: blue;
-    font-family: verdana, serif;
+    color: greenyellow;
     font-size: 300%;
 }
 body {
     background-color: darkgray;
 }
 a {
-    border: 2px solid powderblue;
-    margin: 50px;
+    color:wheat;
+    font-family: courier, fantasy;
+    font-size: 200%;
+    text-align: -webkit-center;
+    margin: 10px;
 }
+form{
+    border-bottom-color: #B0413E;
+}
+th{
+    color:wheat;
+    font-size: 250%;
+
+}
+td{
+    color: black;
+    font-size: 100%;
+}
+    
 

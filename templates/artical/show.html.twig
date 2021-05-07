@@ -23,7 +23,7 @@
             <th>{{ artical.created ? artical.created|date('Y-m-d H:i:s') : '' }}</th>
             <th>{{ artical.category }}</th>
             <th> <a href="{{ path('artical_edit', {'id': artical.id}) }}">edit</a></th>
-            
+
 
         </tr>
     {% endfor %}

@@ -19,7 +19,7 @@ class MainController extends AbstractController
      * @Route("/", name="homepage", methods={"GET"})
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function indexAction(): Response
     {
         $find = $this->getDoctrine()->getManager();
         $articals = $find->getRepository(Artical::class)->findAll();
@@ -40,20 +40,5 @@ class MainController extends AbstractController
         return $this->render('main/index.html.twig',['articals'=>$enable]);
 
     }
-
-    /**
-     * @Route ("/artical-category/{categoryName}", name="category",methods={"GET"})
-     * @return Response
-     */
-
-    public function showArticalCategory($categoryName)
-    {
-    $em = $this->getDoctrine()->getManager();
-    $show = $em->getRepository(Artical::class)->findArticleWithCategory($categoryName);
-
-    return $this->render('artical/show.html.twig', ['articals'=>$show]);
-
-    }
-
 
 }

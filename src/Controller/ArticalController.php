@@ -25,6 +25,7 @@ class ArticalController extends AbstractController
         return $this->render('artical/index.html.twig', [
             'articals' => $articalRepository->findAll(),
         ]);
+
     }
 
         /**
@@ -58,6 +59,7 @@ class ArticalController extends AbstractController
         return $this->render('artical/show_one.html.twig', [
             'artical' => $artical,
         ]);
+
     }
 
     /**
