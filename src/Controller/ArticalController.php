@@ -97,19 +97,5 @@ class ArticalController extends AbstractController
         return $this->redirectToRoute('artical_index');
     }
 
-    public function artical(ValidatorInterface $validator)
-    {
-        $artical = new Artical();
-
-        $errors = $validator ->validate($artical);
-
-        if(count($errors > 0)){
-            $errorsString = (string) $errors;
-            return new Response($errorsString);
-            dd($errorsString);
-        }
-
-        return  new Response('The author is valid! Yes!');
-    }
 
 }

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Artical;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,11 +38,26 @@ class ArticalRepository extends ServiceEntityRepository
     */
 
     public function findArticleWithCategory($categoryName){
-        return $this->createQueryBuilder('a')
-            ->innerJoin('a.category','aC')
+        $queryBuilder = $this->createQueryBuilder('a')
+            ->innerJoin('a.category','aC')->addSelect('aC')
             ->where('aC.name = :name')
             ->setParameter('name',$categoryName)
-            ->getQuery()
-            ->getResult();
+            ->addOrderBy('a.created','DESC')
+        ;
+
+        $paginator = new Paginator($queryBuilder->getQuery(),$fetchJoinCollection = true);
+        $limit = 1000;
+        $page = 1;
+
+            $paginator->getQuery()
+
+                ->setFirstResult($limit*($page-1))
+                ->setMaxResults($limit);
+            
+        $category = $paginator->getIterator();
+
+        return $category;
+
         }
+
 }

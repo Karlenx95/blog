@@ -41,6 +41,8 @@ class MainController extends AbstractController
         return $this->render('main/index.html.twig',['articals'=>$enable]);
 
     }
+
+
     /**
      * @Route ("/artical-category/{categoryName}", name="category",methods={"GET"})
      * @return Response
