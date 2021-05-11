@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/artical")
@@ -95,26 +96,20 @@ class ArticalController extends AbstractController
 
         return $this->redirectToRoute('artical_index');
     }
-    /**
-     * @Route("/new-category/{$category}", name="new-category", methods={"GET","POST"})
-     */
-    public function newCategory(Request $request): Response
+
+    public function artical(ValidatorInterface $validator)
     {
-        $category = new Category();
-        $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
+        $artical = new Artical();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($category);
-            $entityManager->flush();
+        $errors = $validator ->validate($artical);
 
-            return $this->redirectToRoute('homepage');
+        if(count($errors > 0)){
+            $errorsString = (string) $errors;
+            return new Response($errorsString);
+            dd($errorsString);
         }
 
-        return $this->render('artical/newCategory.html.twig', [
-            'category' => $category,
-            'form' => $form->createView(),
-        ]);
+        return  new Response('The author is valid! Yes!');
     }
+
 }

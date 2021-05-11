@@ -26,6 +26,7 @@ class MainController extends AbstractController
 
         return $this->render('main/artical_types.html.twig',['articals'=>$articals]);
 
+
     }
 
     /**

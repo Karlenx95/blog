@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticalRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticalRepository::class)
@@ -19,11 +20,24 @@ class Artical
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull()
+     * @Assert\Type("string")
+     * @Assert\Length(min=3)
+     * @Assert\Regex(
+     *     pattern="/\d/"
+     * )
      */
     private $name;
 
     /**
+     * @Assert\NotNull()
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 100,
+     *      minMessage = "Description must be at least {{ limit }} characters long",
+     *      maxMessage = "Description cannot be longer than {{ limit }} characters"
+     * )
      */
     private $description;
 
