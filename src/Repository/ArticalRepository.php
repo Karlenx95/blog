@@ -37,27 +37,64 @@ class ArticalRepository extends ServiceEntityRepository
     }
     */
 
-    public function findArticleWithCategory($categoryName){
+//    public function findArticleWithCategory($categoryName)
+//    {
+//        return $this->createQueryBuilder('a')
+//            ->innerJoin('a.category', 'aC')->addSelect('aC')
+//            ->where('aC.name = :name')
+//            ->setParameter('name', $categoryName)
+//            ->setFirstResult(0)
+//            ->setMaxResults(10)
+//            ->addOrderBy('a.created', 'DESC')
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//
+//
+////        return $queryBuilder;
+//    }
+
+
+    /**
+     * This repo is used to get a paginator for articles.
+     *
+     * @param string $categoryName
+     * @param int $page
+     * @param int $limit
+     * @return Paginator
+     */
+    public function findArticlePagination(string $categoryName = '', int $page = 1, int $limit = 10): Paginator
+    {
+        // create a query builder
         $queryBuilder = $this->createQueryBuilder('a')
-            ->innerJoin('a.category','aC')->addSelect('aC')
+            ->innerJoin('a.category', 'aC')->addSelect('aC')
             ->where('aC.name = :name')
-            ->setParameter('name',$categoryName)
-            ->addOrderBy('a.created','DESC')
+            ->setParameter('name', $categoryName)
+            ->addOrderBy('a.created', 'DESC')
+//            ->where('a.isEnabled = :isT')
+//            ->setParameter('isT', true)
         ;
 
-        $paginator = new Paginator($queryBuilder->getQuery(),$fetchJoinCollection = true);
-        $limit = 1000;
-        $page = 1;
+        // check if need to filter by category
+        if(strlen($categoryName) >0){
 
-            $paginator->getQuery()
-
-                ->setFirstResult($limit*($page-1))
-                ->setMaxResults($limit);
-            
-        $category = $paginator->getIterator();
-
-        return $category;
-
+            $queryBuilder->andWhere('aC.name = :aC')
+                ->setParameter('aC', $categoryName);
         }
 
+        // add ordering
+        $queryBuilder->orderBy('a.id', 'ASC')
+            ->getQuery();
+
+        // create a Doctrine pagination
+        $paginator = new Paginator($queryBuilder,  $fetchJoinCollection = true);
+
+        // set limits and page first/start result
+        $paginator->getQuery()
+            ->setFirstResult($limit*($page-1))
+            ->setMaxResults($limit)
+        ;
+
+        return $paginator;
+    }
 }

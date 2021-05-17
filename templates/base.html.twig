@@ -20,7 +20,9 @@
 
             <div class="main-menu">
                 {% block menu %}
-                {{ include('main/menu.html.twig')}}
+                    {{ render(controller(
+                        'App\\Controller\\MainController::mainMenuAction'
+                    )) }}
                 {% endblock %}
             </div>
             <div class="content">

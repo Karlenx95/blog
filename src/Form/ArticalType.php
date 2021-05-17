@@ -29,4 +29,5 @@ class ArticalType extends AbstractType
             'data_class' => Artical::class,
         ]);
     }
+
 }

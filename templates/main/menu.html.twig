@@ -2,8 +2,19 @@
     <li>
         <a href="{{ path('homepage') }}">Homepage</a>
     </li>
+
+    <hr>
+    {% for category in categories %}
+        <li>
+            <a href="{{ path('artical-list',{'categoryName': category.name }) }}">{{ category.name|capitalize }}</a>
+        </li>
+    {% endfor %}
+    <hr>
     <li>
         <a href="{{ path('artical_index') }}">Articals</a>
+    </li>
+    <li>
+        <a href="{{ path('category_index') }}">Category list</a>
     </li>
     <li>
         <a href="{{ path('artical_new') }}">New Articals</a>
@@ -12,6 +23,6 @@
         <a href="{{ url('enable')}}">Enable  Articals</a>
     </li>
     <li>
-        <a href="{{ path('new-category') }}">New Category</a>
+        <a href="{{ path('category_new') }}">New Category</a>
     </li>
 </ul>

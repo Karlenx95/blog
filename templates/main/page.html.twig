@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+<th>
+    {% for elem in paginator %}
+        <p>{{ elem.name }}</p>
+    {% endfor %}
+
+</th>
+
+        {% if total_cnt/10 > 1 %}
+                {% for pageNumber in range(1, (1 + total_cnt/10)) %}
+
+                        {% set curenPageNumber = 1 %}
+
+                        {% if app.request.query.get('page') != null %}
+                                {% set curenPageNumber = app.request.query.get('page') %}
+                        {% endif %}
+
+                        {% if pageNumber == curenPageNumber %}
+                                <a style="color: #18191a; text-decoration: underline" href="#" class="">{{ pageNumber }}</a>
+                        {% else %}
+                                <a style="color: #0b6d9e" href="{{path('artical-list', {'categoryName':app.request.get('categoryName') ,'page':pageNumber}) }}" class="">{{ pageNumber }}</a>
+                        {% endif %}
+
+                {% endfor %}
+        {% endif %}
+{% endblock %}

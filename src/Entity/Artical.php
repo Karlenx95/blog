@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticalRepository;
+use App\Traits\Enabled;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,6 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Artical
 {
+    use Enabled;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -40,11 +43,6 @@ class Artical
      * )
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isEnabled;
 
     /**
      * @ORM\Column(type="datetime")
@@ -90,18 +88,6 @@ class Artical
         return $this;
     }
 
-    public function getIsEnabled(): ?bool
-    {
-        return $this->isEnabled;
-    }
-
-    public function setIsEnabled(bool $isEnabled): self
-    {
-        $this->isEnabled = $isEnabled;
-
-        return $this;
-    }
-
     public function getCreated(): ?\DateTimeInterface
     {
         return $this->created;
@@ -124,5 +110,36 @@ class Artical
         $this->category = $category;
 
         return $this;
+    }
+
+
+
+
+    public function getPage($page = 1)
+    {
+        if ($page < 1) {
+            $page = 1;
+        }
+
+        return floor($page);
+    }
+
+    public function getLimit($limit = 20)
+    {
+        if ($limit < 1 || $limit > 20) {
+            $limit = 20;
+        }
+
+        return floor($limit);
+    }
+
+    public function getOffset($page, $limit)
+    {
+        $offset = 0;
+        if ($page != 0 && $page != 1) {
+            $offset = ($page - 1) * $limit;
+        }
+
+        return $offset;
     }
 }
